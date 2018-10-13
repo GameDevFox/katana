@@ -1,0 +1,32 @@
+{
+  "name": "katana",
+  "version": "1.0.0",
+  "main": "dist/main.js",
+  "author": "Edward Nicholes Jr.",
+  "license": "GPL-3.0-only",
+  "scripts": {
+    "build": "webpack",
+    "clean": "rm -rf ./.nyc_output ./coverage ./dist",
+    "test": "NODE_ENV=test webpack && nyc mocha dist/spec.js",
+    "test:debug": "NODE_ENV=test webpack && nyc mocha --inspect-brk dist/spec.js",
+    "test:watch": "NODE_ENV=test mocha-webpack --watch src/index.spec.js"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-istanbul": "^5.0.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "chai": "^4.2.0",
+    "eslint": "^5.6.1",
+    "eslint-config-xo-space": "^0.20.0",
+    "eslint-loader": "^2.1.1",
+    "mocha": "^5.2.0",
+    "mocha-webpack": "2.0.0-beta.0",
+    "nyc": "^13.0.1",
+    "source-map-support": "^0.5.9",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
+  }
+}
