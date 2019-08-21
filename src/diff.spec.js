@@ -10,17 +10,17 @@ const base = {
     sub: 'hello',
     another: {
       one: 'two',
-      type: 'special'
-    }
+      type: 'special',
+    },
   },
   c: { color: 'red' },
-  d: { product: 2000 }
+  d: { product: 2000 },
 };
 
 const delta = {
   init: 'yours',
   b: { another: { type: 'non-special' } },
-  d: { product: 2500 }
+  d: { product: 2500 },
 };
 
 const deleteDelta = {
@@ -29,11 +29,11 @@ const deleteDelta = {
   b: {
     another: {
       one: undefined,
-      type: 'non-special'
-    }
+      type: 'non-special',
+    },
   },
   c: { color: undefined },
-  d: { product: 2500 }
+  d: { product: 2500 },
 };
 
 describe('diff(a, b)', () => {
@@ -50,10 +50,10 @@ describe('diff(a, b)', () => {
         ...base.b,
         another: {
           ...base.b.another,
-          type: 'non-special'
-        }
+          type: 'non-special',
+        },
       },
-      d: { product: 2500 }
+      d: { product: 2500 },
     };
 
     const result = diff(base, other);
@@ -82,10 +82,10 @@ describe('diff(a, b)', () => {
         ...baseClone.b,
         another: {
           ...baseClone.b.another,
-          type: 'non-special'
-        }
+          type: 'non-special',
+        },
       },
-      d: { product: 2500 }
+      d: { product: 2500 },
     };
 
     delete other.a;
@@ -115,11 +115,11 @@ describe('apply(obj, delta)', () => {
         sub: 'hello',
         another: {
           one: 'two',
-          type: 'non-special'
-        }
+          type: 'non-special',
+        },
       },
       c: { color: 'red' },
-      d: { product: 2500 }
+      d: { product: 2500 },
     });
   });
 
@@ -130,10 +130,10 @@ describe('apply(obj, delta)', () => {
       b: {
         another: {
           ...delta.b.another,
-          one: undefined
-        }
+          one: undefined,
+        },
       },
-      c: { color: undefined }
+      c: { color: undefined },
     });
 
     after.should.deep.equal({
@@ -141,11 +141,11 @@ describe('apply(obj, delta)', () => {
       b: {
         sub: 'hello',
         another: {
-          type: 'non-special'
-        }
+          type: 'non-special',
+        },
       },
       c: {},
-      d: { product: 2500 }
+      d: { product: 2500 },
     });
 
     const myDelta = diff(base, after);

@@ -8,9 +8,8 @@ export const Var = initial => {
     if(newValue) {
       value = newValue;
       updateFn(value);
-    } else {
+    } else
       return value;
-    }
   };
 
   result.update = newFn => (updateFn = newFn);
