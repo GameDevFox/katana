@@ -1,11 +1,13 @@
 import { diff, apply } from './diff';
 import { FPS } from './fps';
-import { noOp, on, chainFns } from './utils';
-import { Var, Val } from './var';
+import { Split } from './split';
+import { reduce, expand, noOp, on, chainFns, Range } from './utils';
+import { ComplexValue, Value } from './value';
 
 export {
   diff, apply,
   FPS,
-  noOp, on, chainFns,
-  Var, Val,
+  Split,
+  reduce, expand, noOp, on, chainFns, Range,
+  ComplexValue, Value,
 };
