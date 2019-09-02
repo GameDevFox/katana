@@ -9,11 +9,16 @@ export const chainFns = fns => value => {
 
 export const noOp = () => {};
 
-export const on = (event, fn) => {
+export const on = (...args) => {
+  let target = global.window;
+  if(args.length > 2)
+    target = args.shift();
+
+  const [event, fn] = args;
   const listener = (...args) => fn(...args);
 
-  global.window.addEventListener(event, listener);
-  return () => global.window.removeEventListener(event, listener);
+  target.addEventListener(event, listener);
+  return () => target.removeEventListener(event, listener);
 };
 
 export const Range = initial => {
