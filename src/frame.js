@@ -1,3 +1,20 @@
+export const renderLoop = fn => {
+  const { requestAnimationFrame, cancelAnimationFrame } = global;
+  if(!requestAnimationFrame)
+    throw new Error('`requestAnimationFrame` not supported');
+
+  let rafId;
+  const renderMe = millis => {
+    const time = millis / 1000;
+    fn(time);
+
+    rafId = requestAnimationFrame(renderMe);
+  };
+
+  rafId = requestAnimationFrame(renderMe);
+  return () => cancelAnimationFrame(rafId);
+};
+
 export const FPS = frameFn => {
   let delta = 0;
   let fps = 0;
