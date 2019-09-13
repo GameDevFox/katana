@@ -1,15 +1,9 @@
-import { diff, apply } from './diff';
-import { FPS, renderLoop } from './frame';
-import { Keys } from './input';
-import { Split } from './split';
-import { reduce, expand, noOp, on, chainFns, Range } from './utils';
-import { ComplexValue, Value } from './value';
-
-export {
-  diff, apply,
-  FPS, renderLoop,
-  Keys,
-  Split,
-  reduce, expand, noOp, on, chainFns, Range,
-  ComplexValue, Value,
-};
+export { Builder } from './builder';
+export { diff, apply } from './diff';
+export { FPS, renderLoop } from './frame';
+export { Keys } from './input';
+export { Map } from './map';
+export { NArgFn } from './n-arg-fn';
+export { Split } from './split';
+export { reduce, expand, noOp, on, chainFns, Range } from './utils';
+export { ComplexValue, Value } from './value';

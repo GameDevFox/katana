@@ -1,3 +1,4 @@
+import { NArgFn } from './n-arg-fn';
 import { Split } from './split';
 
 export const Value = initial => {
@@ -5,13 +6,13 @@ export const Value = initial => {
 
   const [input, output] = Split();
 
-  const result = (...args) => {
-    if(args.length === 0)
-      return value;
-
-    value = args[0];
-    input(value);
-  };
+  const result = NArgFn(
+    () => value,
+    newValue => {
+      value = newValue;
+      input(value);
+    },
+  );
 
   result.output = output;
 
@@ -30,12 +31,10 @@ export const ComplexValue = (fn, initialDeps) => {
   };
 
   let value = null;
-  const result = (...args) => {
-    if(args.length === 0)
-      return value;
-
-    updateValue();
-  };
+  const result = NArgFn(
+    () => value,
+    () => updateValue(),
+  );
 
   const unbindDep = name => {
     const removeFn = removeDepFns[name];
