@@ -1,7 +1,8 @@
 export { Builder } from './builder';
 export { diff, apply } from './diff';
 export { FPS, renderLoop } from './frame';
-export { Keys } from './input';
+export { Keys } from './keys';
+export { Keyboard } from './keyboard';
 export { Map } from './map';
 export { NArgFn } from './n-arg-fn';
 export { Split } from './split';

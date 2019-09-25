@@ -1,8 +1,11 @@
 import { on } from './utils';
+import { Split } from './split';
 import { Value } from './value';
 
 export const Keys = (target = global) => {
   const keys = {};
+  const [keyDownInput, keyDown] = Split();
+  const [keyUpInput, keyUp] = Split();
 
   const addKey = code => {
     const key = Value();
@@ -22,6 +25,7 @@ export const Keys = (target = global) => {
       return;
 
     // Send update
+    keyDownInput(code);
     key(true);
   });
 
@@ -31,10 +35,11 @@ export const Keys = (target = global) => {
     if(!key)
       key = addKey(code);
 
+    keyUpInput(code);
     key(false);
   });
 
-  return (...args) => {
+  const result = (...args) => {
     if(args.length === 0)
       return keys;
 
@@ -49,4 +54,8 @@ export const Keys = (target = global) => {
 
     return key;
   };
+
+  result.output = { keyUp, keyDown };
+
+  return result;
 };

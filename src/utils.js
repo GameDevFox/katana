@@ -10,7 +10,7 @@ export const chainFns = fns => value => {
 export const noOp = () => {};
 
 export const on = (...args) => {
-  let target = global.window;
+  let target = global;
   if(args.length > 2)
     target = args.shift();
 
