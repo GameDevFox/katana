@@ -7,6 +7,15 @@ export const chainFns = fns => value => {
   return value;
 };
 
+export const chainOutputs = fns => {
+  let output = fns[0];
+  for(let i = 1; i < fns.length; i++) {
+    const input = fns[i];
+    output(input);
+    output = input.output;
+  }
+};
+
 export const noOp = () => {};
 
 export const on = (...args) => {

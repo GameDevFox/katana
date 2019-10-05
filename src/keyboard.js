@@ -1,26 +1,37 @@
 import { NArgFn } from './n-arg-fn';
 import { Split } from './split';
 import { on } from './utils';
+import { Value } from './value';
 
 export const Keyboard = (target = global) => {
-  let keys = {};
+  const keys = {};
 
   const [changeInput, change] = Split();
   const [downInput, down] = Split();
   const [upInput, up] = Split();
 
+  const getKey = key => {
+    let keyVar = keys[key];
+    if(!keyVar) {
+      keyVar = Value(false);
+      keys[key] = keyVar;
+    }
+
+    return keyVar;
+  };
+
   on(target, 'keydown', ({ code: key, repeat }) => {
     if(repeat)
       return;
 
-    keys[key] = true;
+    getKey(key)(true);
 
     changeInput({ key, value: true });
     downInput(key);
   });
 
   on(target, 'keyup', ({ code: key }) => {
-    delete keys[key];
+    getKey(key)(false);
 
     changeInput({ key, value: false });
     upInput(key);
@@ -28,11 +39,11 @@ export const Keyboard = (target = global) => {
 
   const result = NArgFn(
     () => keys,
-    key => keys[key],
+    getKey,
   );
 
   result.clear = () => {
-    keys = {};
+    Object.values(keys).forEach(value => value(false));
     changeInput({});
   };
 
