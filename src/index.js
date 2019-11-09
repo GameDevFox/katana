@@ -8,6 +8,8 @@ export { Keyboard } from './keyboard';
 export { List } from './list';
 export { Map } from './map';
 export { NArgFn } from './n-arg-fn';
+export { order } from './order';
+export { Pipe } from './pipe';
 export { Split } from './split';
 export { Switch } from './switch';
 export { Range, chainFns, chainOutputs, expand, reduce, noOp, on } from './utils';
