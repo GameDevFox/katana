@@ -1,3 +1,4 @@
+import { expect } from 'chai';
 import { fake } from 'sinon';
 
 import { Pipe } from './pipe';
@@ -9,7 +10,9 @@ describe('Pipe', () => {
 
     const [input, output] = Pipe();
 
-    input(1);
+    expect(() => {
+      input(1);
+    }).to.throw('No target to call for this pipe');
 
     output(fakeA);
     input(2);
@@ -18,7 +21,10 @@ describe('Pipe', () => {
     input(3);
 
     output(null);
-    input(4);
+
+    expect(() => {
+      input(4);
+    }).to.throw('No target to call for this pipe');
 
     fakeA.args.should.deep.equal([[2]]);
     fakeB.args.should.deep.equal([[3]]);
@@ -31,7 +37,9 @@ describe('Pipe', () => {
 
     const [output, input] = Pipe();
 
-    output(fakeA);
+    expect(() => {
+      output(fakeA);
+    }).to.throw('No target to call for this pipe');
 
     let count = 10;
     input(fn => fn(count--));

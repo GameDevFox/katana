@@ -2,6 +2,9 @@
 export const reduce = (x, start, end) => (x - start) / (end - start);
 export const expand = (x, start, end) => (x * (end - start)) + start;
 
+export const noOp = () => {};
+export const identity = x => x;
+
 export const chainFns = fns => value => {
   fns.forEach(fn => (value = fn(value)));
   return value;
@@ -15,8 +18,6 @@ export const chainOutputs = fns => {
     output = input.output;
   }
 };
-
-export const noOp = () => {};
 
 export const on = (...args) => {
   let target = global;

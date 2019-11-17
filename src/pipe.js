@@ -2,8 +2,10 @@ export const Pipe = () => {
   let target = null;
 
   const active = (...args) => {
-    if(target)
-      return target(...args);
+    if(!target)
+      throw new Error('No target to call for this pipe');
+
+    return target(...args);
   };
 
   const passive = (...args) => {
