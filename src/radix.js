@@ -1,6 +1,6 @@
-import { copies } from './copies';
-
-const numbers = copies(26);
+const numbers = [];
+for(let i = 0; i < 26; i++)
+  numbers.push(i);
 
 export const numeric = numbers.slice(0, 10).map(x => x.toString());
 export const alphaUpper = numbers.map(x => String.fromCharCode(0x41 + x));

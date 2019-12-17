@@ -17,7 +17,7 @@ describe('copies', () => {
   });
 
   it('namedCopies', () => {
-    let result = namedCopies(4, x => `copy${x + 1}`);
+    let result = namedCopies(4, x => `copy${x + 1}`, identity);
     result.should.deep.equal({
       copy1: 0,
       copy2: 1,
@@ -25,7 +25,7 @@ describe('copies', () => {
       copy4: 3,
     });
 
-    result = namedCopies(4, i => `${i}custom-name${i}`);
+    result = namedCopies(4, i => `${i}custom-name${i}`, identity);
     result.should.deep.equal({
       '0custom-name0': 0,
       '1custom-name1': 1,

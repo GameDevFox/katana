@@ -1,3 +1,4 @@
+import { Radix, alphaLower } from './radix';
 import { identity } from './utils';
 
 export const copies = (count, fn = identity) => {
@@ -9,7 +10,14 @@ export const copies = (count, fn = identity) => {
   return results;
 };
 
-export const namedCopies = (count, nameFn, fn = identity) => {
+export const namedCopies = (...args) => {
+  let [count, nameFn, fn = identity] = args;
+
+  if(args.length === 2) {
+    fn = nameFn;
+    nameFn = Radix(alphaLower);
+  }
+
   const results = {};
 
   for(let i = 0; i < count; i++) {

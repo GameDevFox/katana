@@ -56,4 +56,52 @@ describe('Pipe', () => {
     fakeB.args.should.deep.equal([[10], [9], [8], [7], [6]]);
     fakeC.args.should.deep.equal([[0], [1], [4], [9], [16]]);
   });
+
+  it('output pattern', () => {
+    const [outputA, output] = Pipe();
+
+    // External
+    let x;
+    output(value => (x = value * 2));
+
+    // Internal
+    outputA(50);
+
+    // Validation
+    x.should.equal(100);
+  });
+
+  it('input push pattern', () => {
+    const [input, inputP] = Pipe();
+
+    // Internal
+    let num;
+    inputP(value => (num = value + 456));
+
+    // External
+    input(123);
+
+    // Validation
+    num.should.equal(579);
+  });
+
+  it('input pull pattern', () => {
+    const [inputA, input] = Pipe();
+
+    const MAP = {
+      a: 'apple',
+      b: 'banana',
+      c: 'coconut',
+    };
+
+    // External
+    input((id, output) => output(MAP[id]));
+
+    // Internal
+    let fruit;
+    inputA('b', value => (fruit = value));
+
+    // Validation
+    fruit.should.equal('banana');
+  });
 });
