@@ -1,4 +1,4 @@
-import { NArgFn } from './n-arg-fn';
+import { ArgCountSwitch } from './arg-count-switch';
 import { Split } from './split';
 
 export const Value = initial => {
@@ -6,7 +6,7 @@ export const Value = initial => {
 
   const [input, output] = Split();
 
-  const result = NArgFn(
+  const result = ArgCountSwitch(
     () => value,
     newValue => {
       value = newValue;
@@ -31,7 +31,7 @@ export const ComplexValue = (fn, initialDeps) => {
   };
 
   let value = null;
-  const result = NArgFn(
+  const result = ArgCountSwitch(
     () => value,
     () => updateValue(),
   );

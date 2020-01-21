@@ -1,4 +1,4 @@
-export const NArgFn = (...handlers) => {
+export const ArgCountSwitch = (...handlers) => {
   const fn = (...args) => {
     const count = args.length;
     const handle = handlers[count];

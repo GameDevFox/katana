@@ -11,8 +11,15 @@ export const copies = (count, fn = identity) => {
 };
 
 export const namedCopies = (...args) => {
-  let [count, nameFn, fn = identity] = args;
+  let [count, nameFn, fn] = args;
 
+  // Only supply `count`
+  if(args.length === 1) {
+    nameFn = Radix(alphaLower);
+    fn = identity;
+  }
+
+  // Only supply `count` and `fn`
   if(args.length === 2) {
     fn = nameFn;
     nameFn = Radix(alphaLower);
@@ -25,7 +32,7 @@ export const namedCopies = (...args) => {
     if(name in results)
       throw new Error(`The nameFn generated a name that already exists: ${i} => ${name}`);
 
-    results[name] = fn(i);
+    results[name] = fn(name, i);
   }
 
   return results;

@@ -1,4 +1,4 @@
-import { NArgFn } from './n-arg-fn';
+import { ArgCountSwitch } from './arg-count-switch';
 import { Split } from './split';
 import { on } from './utils';
 import { Value } from './value';
@@ -37,7 +37,7 @@ export const Keyboard = (target = global) => {
     upInput(key);
   });
 
-  const result = NArgFn(
+  const result = ArgCountSwitch(
     () => keys,
     getKey,
   );

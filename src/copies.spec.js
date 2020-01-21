@@ -17,20 +17,31 @@ describe('copies', () => {
   });
 
   it('namedCopies', () => {
-    let result = namedCopies(4, x => `copy${x + 1}`, identity);
+    let result = namedCopies(4);
     result.should.deep.equal({
-      copy1: 0,
-      copy2: 1,
-      copy3: 2,
-      copy4: 3,
+      a: 'a',
+      b: 'b',
+      c: 'c',
+      d: 'd',
     });
 
-    result = namedCopies(4, i => `${i}custom-name${i}`, identity);
+    result = namedCopies(4, (name, index) => {
+      const number = (index + 1) * 2;
+      return `myCopy${name.toUpperCase()}:${number}`;
+    });
     result.should.deep.equal({
-      '0custom-name0': 0,
-      '1custom-name1': 1,
-      '2custom-name2': 2,
-      '3custom-name3': 3,
+      a: 'myCopyA:2',
+      b: 'myCopyB:4',
+      c: 'myCopyC:6',
+      d: 'myCopyD:8',
+    });
+
+    result = namedCopies(4, index => `copy${(index + 1) * 2}`, identity);
+    result.should.deep.equal({
+      copy2: 'copy2',
+      copy4: 'copy4',
+      copy6: 'copy6',
+      copy8: 'copy8',
     });
   });
 });

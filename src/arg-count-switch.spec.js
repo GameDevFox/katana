@@ -1,7 +1,7 @@
-import { NArgFn } from './n-arg-fn';
+import { ArgCountSwitch } from './arg-count-switch';
 
-it('NArgFn', () => {
-  const fn = NArgFn(
+it('ArgCountSwitch', () => {
+  const fn = ArgCountSwitch(
     () => 'Hello',
     first => `${first} world`,
     (first, second) => `${second} again ${first}`,

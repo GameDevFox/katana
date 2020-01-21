@@ -3,6 +3,7 @@ export const reduce = (x, start, end) => (x - start) / (end - start);
 export const expand = (x, start, end) => (x * (end - start)) + start;
 
 export const noOp = () => {};
+export const noOpWithCB = (_, cb) => cb();
 export const identity = x => x;
 
 export const chainFns = fns => value => {

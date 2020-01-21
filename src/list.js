@@ -1,4 +1,4 @@
-import { NArgFn } from './n-arg-fn';
+import { ArgCountSwitch } from './arg-count-switch';
 import { Split } from './split';
 
 export const List = (initial = []) => {
@@ -6,7 +6,7 @@ export const List = (initial = []) => {
 
   const [input, output] = Split();
 
-  const result = NArgFn(
+  const result = ArgCountSwitch(
     () => list,
     item => {
       list.push(item);

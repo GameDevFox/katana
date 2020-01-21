@@ -1,9 +1,9 @@
-import { NArgFn } from './n-arg-fn';
+import { ArgCountSwitch } from './arg-count-switch';
 
 export const Map = (initial = {}) => {
   const map = initial;
 
-  const result = NArgFn(
+  const result = ArgCountSwitch(
     () => map,
     key => map[key],
     (key, value) => (map[key] = value),
