@@ -1,5 +1,6 @@
 import { fake } from 'sinon';
 
+import { copies } from './copies';
 import { Switch } from './switch';
 
 describe('Switch', () => {
@@ -12,8 +13,7 @@ describe('Switch', () => {
     const outLarge = sw.path(value => value >= 10);
     const outPositive = sw.path(value => value > 0);
 
-    const [fakeEven, fakeNegative, fakeLarge, fakeSmall, fakePositive] =
-      [fake(), fake(), fake(), fake(), fake()];
+    const [fakeEven, fakeNegative, fakeLarge, fakeSmall, fakePositive] = copies(5, () => fake());
 
     outEven(fakeEven);
     outNegative(fakeNegative);
