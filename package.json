@@ -1,9 +1,13 @@
 {
   "name": "@gamedevfox/katana",
-  "version": "1.4.0",
-  "main": "dist/main.js",
+  "version": "1.5.0",
   "author": "Edward Nicholes Jr.",
-  "license": "GPL-3.0-only",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/GameDevFox/katana.git"
+  },
+  "main": "dist/main.js",
   "sakuradite": {
     "type": "app"
   },
