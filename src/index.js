@@ -11,7 +11,6 @@ export { List } from './list';
 export { Map } from './map';
 export { ArgCountSwitch } from './arg-count-switch';
 export { order } from './order';
-export { Pipe } from './pipe';
 export { Radix, numeric, alphaUpper, alphaLower } from './radix';
 export { Split, split } from './split';
 export { Switch } from './switch';
