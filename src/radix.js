@@ -6,7 +6,7 @@ export const numeric = numbers.slice(0, 10).map(x => x.toString());
 export const alphaUpper = numbers.map(x => String.fromCharCode(0x41 + x));
 export const alphaLower = numbers.map(x => String.fromCharCode(0x61 + x));
 
-export const Radix = base => {
+export const Radix = (base, mapFn) => {
   if(typeof base === 'number') {
     if(base > 36)
       throw new Error('If `base` is a number it can\'t be more than 36');
@@ -17,16 +17,18 @@ export const Radix = base => {
 
   const split = modSplit(base.length);
 
-  return value => {
-    let mod = split(value);
-    if(value === 0)
-      mod = ['0'];
+  const map = mapFn ? mapFn(base) : x => base[x];
 
-    return mod.map(x => base[x]).join('');
+  return value => {
+    const mod = split(value);
+    return mod.map(map).join('');
   };
 };
 
 export const modSplit = base => num => {
+  if(num === 0)
+    return [0];
+
   const result = [];
 
   let index = 1;
