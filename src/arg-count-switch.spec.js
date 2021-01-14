@@ -1,3 +1,4 @@
+import { expect } from 'chai';
 import { ArgCountSwitch } from './arg-count-switch';
 
 it('ArgCountSwitch', () => {
@@ -9,14 +10,14 @@ it('ArgCountSwitch', () => {
     (...list) => list.reverse(),
   );
 
-  fn().should.equal('Hello');
-  fn('one').should.equal('one world');
-  fn(1, 'two').should.equal('two again 1');
-  (() => {
+  expect(fn()).to.equal('Hello');
+  expect(fn('one')).to.equal('one world');
+  expect(fn(1, 'two')).to.equal('two again 1');
+  expect(() => {
     fn('a', 'b', 'c');
-  }).should.throw();
-  fn(...[1, 2, 3, 4]).should.deep.equal([4, 3, 2, 1]);
-  (() => {
+  }).to.throw();
+  expect(fn(...[1, 2, 3, 4])).to.deep.equal([4, 3, 2, 1]);
+  expect(() => {
     fn(...'qwert'.split(''));
-  }).should.throw();
+  }).to.throw();
 });

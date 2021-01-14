@@ -1,13 +1,15 @@
+import { expect } from 'chai';
+
 import { copies, namedCopies } from './copies';
 import { identity } from './utils';
 
 describe('copies', () => {
   it('copies (unnamed)', () => {
     let result = copies(5, identity);
-    result.should.deep.equal([0, 1, 2, 3, 4]);
+    expect(result).to.deep.equal([0, 1, 2, 3, 4]);
 
     result = copies(5, i => `Hello ${i + 1}`);
-    result.should.deep.equal([
+    expect(result).to.deep.equal([
       'Hello 1',
       'Hello 2',
       'Hello 3',
@@ -18,7 +20,7 @@ describe('copies', () => {
 
   it('namedCopies', () => {
     let result = namedCopies(4);
-    result.should.deep.equal({
+    expect(result).to.deep.equal({
       a: 'a',
       b: 'b',
       c: 'c',
@@ -29,7 +31,7 @@ describe('copies', () => {
       const number = (index + 1) * 2;
       return `myCopy${name.toUpperCase()}:${number}`;
     });
-    result.should.deep.equal({
+    expect(result).to.deep.equal({
       a: 'myCopyA:2',
       b: 'myCopyB:4',
       c: 'myCopyC:6',
@@ -37,7 +39,7 @@ describe('copies', () => {
     });
 
     result = namedCopies(4, index => `copy${(index + 1) * 2}`, identity);
-    result.should.deep.equal({
+    expect(result).to.deep.equal({
       copy2: 'copy2',
       copy4: 'copy4',
       copy6: 'copy6',

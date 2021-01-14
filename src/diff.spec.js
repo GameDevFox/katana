@@ -58,7 +58,7 @@ describe('diff(a, b)', () => {
 
     const result = diff(base, other);
 
-    result.should.deep.equal(delta);
+    expect(result).to.deep.equal(delta);
   });
 
   it('should return null when mutating object', () => {
@@ -94,13 +94,13 @@ describe('diff(a, b)', () => {
 
     const result = diff(base, other);
 
-    result.should.deep.equal(deleteDelta);
+    expect(result).to.deep.equal(deleteDelta);
   });
 
   it('should be able to add properties', () => {
     const base = { a: 123, b: { c: 456 } };
     const after = apply(base, { b: { d: 789 }, e: 101112 });
-    after.should.deep.equal({ a: 123, b: { c: 456, d: 789 }, e: 101112 });
+    expect(after).to.deep.equal({ a: 123, b: { c: 456, d: 789 }, e: 101112 });
   });
 });
 
@@ -108,7 +108,7 @@ describe('apply(obj, delta)', () => {
   it('should alter `obj` by `delta`', () => {
     const after = apply(base, delta);
 
-    after.should.deep.equal({
+    expect(after).to.deep.equal({
       init: 'yours',
       a: 123,
       b: {
@@ -136,7 +136,7 @@ describe('apply(obj, delta)', () => {
       c: { color: undefined },
     });
 
-    after.should.deep.equal({
+    expect(after).to.deep.equal({
       init: 'yours',
       b: {
         sub: 'hello',
@@ -149,11 +149,11 @@ describe('apply(obj, delta)', () => {
     });
 
     const myDelta = diff(base, after);
-    myDelta.should.deep.equal(deleteDelta);
+    expect(myDelta).to.deep.equal(deleteDelta);
   });
 
   it('should return the same object if delta is null', () => {
     const after = apply(base, null);
-    after.should.equal(base);
+    expect(after).to.equal(base);
   });
 });

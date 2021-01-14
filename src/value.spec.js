@@ -6,29 +6,29 @@ import { ComplexValue, Value } from './value';
 it('Value', () => {
   const value = Value(123);
 
-  value().should.equal(123);
+  expect(value()).to.equal(123);
   value(234);
-  value().should.equal(234);
+  expect(value()).to.equal(234);
 
   let outputValue;
   const outputFn = value => (outputValue = value);
   const removeOutput = value.output(outputFn);
-  value.output().should.deep.equal([outputFn]);
+  expect(value.output()).to.deep.equal([outputFn]);
 
   expect(outputValue).to.be.undefined;
   value(345);
-  outputValue.should.equal(345);
+  expect(outputValue).to.equal(345);
 
   let outputValueB;
   value.output(value => (outputValueB = value * 2));
   value(456);
-  outputValue.should.equal(456);
-  outputValueB.should.equal(912);
+  expect(outputValue).to.equal(456);
+  expect(outputValueB).to.equal(912);
 
   removeOutput();
   value(789);
-  outputValue.should.equal(456);
-  outputValueB.should.equal(1578);
+  expect(outputValue).to.equal(456);
+  expect(outputValueB).to.equal(1578);
 });
 
 it('ComplexValue', () => {
@@ -54,17 +54,17 @@ it('ComplexValue', () => {
   const xOut = fake();
   x.output(xOut);
 
-  x().should.equal(144);
+  expect(x()).to.equal(144);
   a(12);
-  x().should.equal(572);
+  expect(x()).to.equal(572);
 
   x.bind({ a: otherA });
 
   a(2);
   otherA(3);
 
-  aOut.args.should.deep.equal([[12], [2]]);
-  otherAOut.args.should.deep.equal([[3]]);
+  expect(aOut.args).to.deep.equal([[12], [2]]);
+  expect(otherAOut.args).to.deep.equal([[3]]);
 
-  xOut.args.should.deep.equal([[572], [36], [108]]);
+  expect(xOut.args).to.deep.equal([[572], [36], [108]]);
 });

@@ -1,3 +1,5 @@
+import { expect } from 'chai';
+
 import { order } from './order';
 
 it('order', () => {
@@ -10,5 +12,5 @@ it('order', () => {
   };
 
   const myOrder = order(orderMap);
-  myOrder.should.deep.equal(['alpha', 'beta', 'delta', 'theta', 'omega']);
+  expect(myOrder).to.deep.equal(['alpha', 'beta', 'delta', 'theta', 'omega']);
 });

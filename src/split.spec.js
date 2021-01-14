@@ -1,3 +1,4 @@
+import { expect } from 'chai';
 import { fake } from 'sinon';
 
 import { Split } from './split';
@@ -28,7 +29,7 @@ it('Split', () => {
   removeA();
   split(7);
 
-  fakeA.args.should.deep.equal([[2], [3], [4], [5], [6]]);
-  fakeB.args.should.deep.equal([[3], [4], [5]]);
-  fakeC.args.should.deep.equal([[4]]);
+  expect(fakeA.args).to.deep.equal([[2], [3], [4], [5], [6]]);
+  expect(fakeB.args).to.deep.equal([[3], [4], [5]]);
+  expect(fakeC.args).to.deep.equal([[4]]);
 });

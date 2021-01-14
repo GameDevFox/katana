@@ -1,3 +1,4 @@
+import { expect } from 'chai';
 import { Iterator } from './iterator';
 
 describe('Iterator', () => {
@@ -9,6 +10,6 @@ describe('Iterator', () => {
     while(!iterator.isDone())
       list.push(iterator());
 
-    list.should.deep.equal(originalList);
+    expect(list).to.deep.equal(originalList);
   });
 });

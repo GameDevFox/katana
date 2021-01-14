@@ -1,3 +1,4 @@
+import { expect } from 'chai';
 import { fake } from 'sinon';
 
 import { Filter } from './filter';
@@ -26,24 +27,24 @@ describe('Filter', () => {
     val('hello');
 
     val(1);
-    fake1.args[0].should.deep.equal([1]);
+    expect(fake1.args[0]).to.deep.equal([1]);
 
     val(6);
-    fake2to9.args[0].should.deep.equal([6]);
-    fakeEven.args[0].should.deep.equal([6]);
+    expect(fake2to9.args[0]).to.deep.equal([6]);
+    expect(fakeEven.args[0]).to.deep.equal([6]);
 
     val(105);
-    fakeOver100.args[0].should.deep.equal([105]);
+    expect(fakeOver100.args[0]).to.deep.equal([105]);
 
     val(200);
-    fakeOver100.args[1].should.deep.equal([200]);
-    fakeEven.args[1].should.deep.equal([200]);
+    expect(fakeOver100.args[1]).to.deep.equal([200]);
+    expect(fakeEven.args[1]).to.deep.equal([200]);
 
     val(51);
 
-    fake1.args.should.deep.equal([[1]]);
-    fake2to9.args.should.deep.equal([[6]]);
-    fakeOver100.args.should.deep.equal([[105], [200]]);
-    fakeEven.args.should.deep.equal([[6], [200]]);
+    expect(fake1.args).to.deep.equal([[1]]);
+    expect(fake2to9.args).to.deep.equal([[6]]);
+    expect(fakeOver100.args).to.deep.equal([[105], [200]]);
+    expect(fakeEven.args).to.deep.equal([[6], [200]]);
   });
 });

@@ -16,9 +16,9 @@ describe('Builder', () => {
     expect(build('msg')).to.equal('The world has 30 people... that\'s 30!!!');
     expect(build('random')).to.equal(build('random'));
 
-    (() => {
+    expect(() => {
       build('not-found');
-    }).should.throw();
+    }).to.throw();
   });
 
   it('should support circular dependencies via after function', () => {
@@ -36,7 +36,7 @@ describe('Builder', () => {
     });
 
     const [adam, eve] = ['adam', 'eve'].map(build);
-    adam.spouse.should.equal(eve);
-    eve.spouse.should.equal(adam);
+    expect(adam.spouse).to.equal(eve);
+    expect(eve.spouse).to.equal(adam);
   });
 });
