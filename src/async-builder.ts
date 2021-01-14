@@ -13,7 +13,7 @@ export const AsyncBuilder = (config: { [key: string]: any }) => {
 
     let value = config[name];
 
-    let afterFn = (builder: Builder) => {};
+    let afterFn: BuildFunction = () => {};
     if(typeof value === 'function') {
       const after = (fn: BuildFunction) => (afterFn = fn);
       value = await value(resolver, after);
